@@ -1,4 +1,5 @@
 # pgvector_usecases 
+![Short videos for the pgvector use cases files rag and image similarity search.](https://github.com/TamerAElhity/pgvector_usecases/blob/main/pgvecotr_usecases.gif)
 ## Prerequisites
 1. Postgres
    - create a database and install pgvector and PL/Python extensions

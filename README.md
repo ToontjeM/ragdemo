@@ -25,7 +25,7 @@
      - mxbai-embed-large (command line to execute on ollama cli: ollama pull mxbai-embed-large)
 	 - llama3.1 (command line to execute on ollama cli: ollama pull llama3.1) 
 12. Give postgres service or user folder access permission on the directory from which you are running the streamlit python file
-13. openai/clip-vit-base-patch32 transformers (https://huggingface.co/docs/transformers/installation)
+13. "openai/clip-vit-base-patch32" transformers (https://huggingface.co/docs/transformers/installation)
     - 
 ## Database configuration for streamlit
 you may adjust database configuration (database name, port, username, password) in ".streamlit/secrets.toml" file

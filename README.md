@@ -15,9 +15,7 @@ This demo is going to show how Postgres can be used to create a generative AI en
 
 ### Demo setup
 #### Set up Postgres
-- Set up a new database in Postgres. I created a `./db` directory in case you want to run the Postgres instance isolated.
-You can create the new instance using `initdb --pgdata=$PWD/db --encoding=UTF8 --locale=en_US.utf8` and then start the new instance using `pg_ctl -D $PWD/db -l logfile start`
-- Create a new database using `CREATE DATABASE ragdemo;`
+- Set up a new database in Postgres using `CREATE DATABASE ragdemo;`
 - Install pgvector using the instructions on https://github.com/pgvector/pgvector and create the extension in Postgres using `CREATE EXTENSION vector`.
 - Install PL/Python using `apt install postgresql-plpython3` and create the extension using `CREATE EXTENSION plpython3u`.
 - run four pl python scripts, you may find these scripts under pl_python sub-directory
@@ -29,18 +27,20 @@ You can create the new instance using `initdb --pgdata=$PWD/db --encoding=UTF8 -
 #### Set up python
 - I strong suggest to create virtual environment to host the python libraries. You can create the virtual environment using `virtualenv venv` and activate it using `source venv/bin/activate`.
 - Once the virtual environment is created, install the following libraries using `pip install`:
-	- sycopg2
+	- psycopg2
 	- langchain 
 	- langchain_text_splitters (usually installed once you install langchain)
 	- tiktoken 
 	- pypdf
 	- pdfplumber
 	- streamlit
-   - pillow 
+   	- pillow 
 	- ollama 
-   - transformers
-   - If you are working on a Mac, wxPython. This should fix the file upload problem.
-   - If you are working on Linux, tkinter. Same as above.
+   	- transformers
+   	- If you are working on a Mac, wxPython. This should fix the file upload problem.
+   	- If you are working on Linux, tk. Same as above.
+
+Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pillow ollama transformers tk`
 
 #### Set up ollama
 - Pull in the following LLM's into ollama:

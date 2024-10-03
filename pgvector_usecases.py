@@ -5,7 +5,9 @@ import io
 import datetime
 import time
 import json
-import wx
+#import wx
+import tkinter as tk
+from tkinter import filedialog
 import math
 
 import psycopg2
@@ -101,43 +103,33 @@ def ollama_models():
     return options
     
 def show_filedialog():
-    #root = tk.Tk()
-    #root.withdraw()        
+    root = tk.Tk()
+    root.withdraw()        
     ## Make folder picker dialog appear on top of other windows
-    #root.wm_attributes('-topmost', 1)
-    #return filedialog.askdirectory(master=root) # st.text_input('Selected folder:', 
+    root.wm_attributes('-topmost', 1)
+    return filedialog.askdirectory(master=root) # st.text_input('Selected folder:', 
 
     
-    if "wx_app" not in st.session_state:
-        st.session_state.wx_app = wx.App()
-        wx.DisableAsserts()
-    path=""
-    if wx.Platform == '__WXMSW__':
-        path = os.getenv("USERPROFILE")
-    else:
-        path = os.getenv("HOME")
-    dialog=None
-    folder_path=None
-    dialog = wx.DirDialog(None, "Select a folder:",path, style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST )
+    #if "wx_app" not in st.session_state:
+    #    st.session_state.wx_app = wx.App()
+    #    wx.DisableAsserts()
+    #path=""
+    #if wx.Platform == '__WXMSW__':
+    #    path = os.getenv("USERPROFILE")
+    #else:
+    #    path = os.getenv("HOME")
+    #dialog=None
+    #folder_path=None
+    #dialog = wx.DirDialog(None, "Select a folder:",path, style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST )
     
-    if dialog!=None and dialog.ShowModal() == wx.ID_OK:
-        folder_path = dialog.GetPath() # folder_path will contain the path of the folder you have selected as string
-    dialog.Destroy()
-    del dialog
+    #if dialog!=None and dialog.ShowModal() == wx.ID_OK:
+    #    folder_path = dialog.GetPath() # folder_path will contain the path of the folder you have selected as string
+    #dialog.Destroy()
+    #del dialog
     #del app
     #del app
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    return folder_path
+
+    #return folder_path
 
 
 def get_augemented_answer(_selected_dataset,_user_question,_selected_model,_question_to_model):

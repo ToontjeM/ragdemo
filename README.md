@@ -39,8 +39,10 @@ This demo is going to show how Postgres can be used to create a generative AI en
    	- transformers
    	- If you are working on a Mac, wxPython. This should fix the file upload problem.
    	- If you are working on Linux, tk. Same as above.
+	- If you want to use your GPU, make sure CUDA is installed and run `pip install torch`.
+		If the GPU is not detected by ollama, try to unload and reload the uvm module using `sudo rmmod nvidia_uvm`and `sudo modprobe nvidia_uv`.
 
-Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pillow ollama transformers tk`
+Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pillow ollama transformers tk torch`
 
 #### Set up ollama
 - Pull in the following LLM's into ollama:
@@ -51,5 +53,5 @@ Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pil
 - Change the db username, password and DB hostname in `.streamlit/secrets.toml`.
 
 ## Demo flow
-- Run the streamlit application using `streamlit run pgvector_usecases.py`.
+- Run the streamlit application using `streamlit run ragdemo.py`.
 

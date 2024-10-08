@@ -7,9 +7,6 @@ CREATE OR REPLACE FUNCTION process_files_in_directory(
 import os
 import time
 
-import torch
-device = torch.device("cuda:0" if torch.cuda.is\_available() else "cpu") 
-
 
 #***********************************************************
 #*************Caching Python Libraries**********************

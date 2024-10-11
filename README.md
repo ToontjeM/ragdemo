@@ -42,7 +42,7 @@ This demo is going to show how Postgres can be used to create a generative AI en
    	- If you are working on a Mac, wxPython. This should fix the file upload problem.
    	- If you are working on Linux, tk. Same as above.
 	- If you want to use your GPU, make sure CUDA is installed and run `pip install torch`.
-		If the GPU is not detected by ollama, try to unload and reload the uvm module using `sudo rmmod nvidia_uvm`and `sudo modprobe nvidia_uv`.
+		If the GPU is not detected by ollama, try to unload and reload the uvm module using `sudo rmmod nvidia_uvm`and `sudo modprobe nvidia_uv`. See https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md
 
 Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pillow ollama transformers tk torch`
 

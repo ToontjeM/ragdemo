@@ -12,6 +12,8 @@ This demo is going to show how Postgres can be used to create a generative AI en
 		When using Postgres.app, please use the instructions on https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os
 - python3 with pip
 - ollama
+- Nvidia GPU drivers (`sudo apt install nvidia-driver-535`)
+
 
 ### Demo setup
 #### Set up Postgres

@@ -3,48 +3,51 @@
 This demo is going to show how Postgres can be used to create a generative AI environment.
 
 ## Demo preparation
+The trick in this demo is to run Postgres in a Python environment where the Postgres instance can see Python modules. You can install the modules globally, but that's no fun. Better to run the modules AND POstgres in a virtual environment.
 ### Prerequisites
-- postgresql
-	- To install postgresql with the PL/Python extension using Homebrew on a Mac, do the following:
-		- `brew tap petere/postgresql`
-		- `brew install petere/postgresql/postgresql@17`
-	
-		When using Postgres.app, please use the instructions on https://www.enterprisedb.com/postgres-tutorials/installation-postgresql-mac-os
-- python3 with pip
+- conda
 - ollama
-- Nvidia GPU drivers (`sudo apt install nvidia-driver-535`)
-
+- GPU drivers to make Ollama hurry up.
 
 ### Demo setup
-#### Set up Postgres
-- Set up a new database in Postgres using `CREATE DATABASE ragdemo;`
-- Install pgvector using the instructions on https://github.com/pgvector/pgvector and create the extension in Postgres using `CREATE EXTENSION vector`.
-- Install PL/Python using `apt install postgresql-plpython3` and create the extension using `CREATE EXTENSION plpython3u`.
-- run four pl python scripts, you may find these scripts under pl_python sub-directory
-   - augmented_response.sql
-	- process_files_in_directory.sql
-	- process_one_image.sql
-	- similar_images.sql
-
-#### Set up python
-- I strong suggest to create virtual environment to host the python libraries. You can create the virtual environment using `virtualenv venv` and activate it using `source venv/bin/activate`.
-- Once the virtual environment is created, install the following libraries using `pip install`:
+#### Set up your virtual environment.
+- Make sure any running Postgres instances are stopped.
+- Create a new virtual environment using `conda create --name ragdemo`.
+- Activate the virtual environment using `conda activate ragdemo`.
+- Install the required modules for this demo:
 	- psycopg2
-	- langchain 
-	- langchain_text_splitters (usually installed once you install langchain)
-	- tiktoken 
+	- langchain-community
+	- tiktoken
 	- pypdf
 	- pdfplumber
 	- streamlit
-   	- pillow 
-	- ollama 
-   	- transformers
-   	- If you are working on a Mac, wxPython. This should fix the file upload problem.
-   	- If you are working on Linux, tk. Same as above.
-	- If you want to use your GPU, make sure CUDA is installed and run `pip install torch`.
-		If the GPU is not detected by ollama, try to unload and reload the uvm module using `sudo rmmod nvidia_uvm`and `sudo modprobe nvidia_uv`. See https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md
+	- pillow
+	- ollama
+	- ollama-python
+	- transformers
+	- pgvector
+	- postgresql-plpython
 
-Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pillow ollama transformers tk torch`
+	If you are working on a Mac, `wxPython`. 
+
+	If you are working on Linux, `tk`. 
+
+	When you create a virtual environment using conda, conda will automagically add the correct version of `tk` to the environment. Believe me, you want to use conda. This will save you a lot of hea`tk`ache.
+
+#### Set up Postgres
+- Conda already installed Postgres when you were installing pgvector and PL/Python, so nothing to install here.
+
+	Make sure any existing instances of Postgres are stopped. If you cannot stop those instances, make sure you are running this Postgres on a separate port.
+- Create a directory for your database `db`and run `initdb -D db`, then start the database using `pg_ctl -D mylocal_db -l logfile start`.
+
+	Postgres is now running under your OS $USER. Feel free to create a user for this demo. I created the standard user `postgres` for this.
+- Connect to your Postgres instance and set up a new database in Postgres using `CREATE DATABASE ragdemo;`
+- Connect to this database and icreate the pgvector and PL/Python extensions in using `CREATE EXTENSION vector` and  `CREATE EXTENSION plpython3u`.
+- Run the four PL/Ppython scripts from the `pl_python` sub-directory
+   	- augmented_response.sql
+	- process_files_in_directory.sql
+	- process_one_image.sql
+	- similar_images.sql
 
 #### Set up ollama
 - Pull in the following LLM's into ollama:
@@ -52,8 +55,12 @@ Example: `pip install psycopg2 langchain tiktoken pypdf pdfplumber streamlit pil
 	- llama3.1 (`ollama pull llama3.1`)
 
 #### Set up demo scripts
-- Change the db username, password and DB hostname in `.streamlit/secrets.toml`.
+- Change the Postgres username, password and database hostname in `.streamlit/secrets.toml`.
 
 ## Demo flow
-- Run the streamlit application using `streamlit run ragdemo.py`.
+You are now ready to run the demo.
 
+Run the streamlit application using `streamlit run ragdemo.py`.
+
+## Tips
+If the GPU is not detected by ollama, try to unload and reload the uvm module using sudo rmmod nvidia_uvmand sudo modprobe nvidia_uv. See https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md

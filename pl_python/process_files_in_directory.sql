@@ -30,6 +30,7 @@ if 'cached_RecursiveCharacterTextSplitter' not in SD:
         plpy.notice("RecursiveCharacterTextSplitter loaded and cached successfully.")
     except Exception as e:
         plpy.error(f"Failed to load model: {str(e)}")
+
 if 'cached_PyPDFLoader' not in SD:
 	try:
 		from langchain.document_loaders import PyPDFLoader

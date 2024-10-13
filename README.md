@@ -11,7 +11,7 @@ The trick in this demo is to run Postgres in a Python environment where the Post
 
 ### Demo setup
 #### Set up your virtual environment.
-- Make sure any running Postgres instances are stopped.
+Make sure any running Postgres instances are stopped.
 - Create a new virtual environment using `conda create --name ragdemo`.
 - Activate the virtual environment using `conda activate ragdemo`.
 - Install the required modules for this demo:
@@ -32,15 +32,15 @@ The trick in this demo is to run Postgres in a Python environment where the Post
 
 	If you are working on Linux, `tk`. 
 
-	When you create a virtual environment using conda, conda will automagically add the correct version of `tk` to the environment. Believe me, you want to use conda. This will save you a lot of hea`tk`ache.
+When you create a virtual environment using conda, conda will automagically add the correct version of `tk` to the environment. Believe me, you want to use conda. This will save you a lot of hea`tk`ache.
 
 #### Set up Postgres
-- Conda already installed Postgres when you were installing pgvector and PL/Python, so nothing to install here.
+Conda already installed Postgres when you were installing pgvector and PL/Python, so nothing to install here.
 
-	Make sure any existing instances of Postgres are stopped. If you cannot stop those instances, make sure you are running this Postgres on a separate port.
+Make sure any existing instances of Postgres are stopped. If you cannot stop those instances, make sure you are running this Postgres on a separate port.
 - Create a directory for your database `db`and run `initdb -D db`, then start the database using `pg_ctl -D mylocal_db -l logfile start`.
 
-	Postgres is now running under your OS $USER. Feel free to create a user for this demo. I created the standard user `postgres` for this.
+Postgres is now running under your OS $USER. Feel free to create a user for this demo. I created the standard user `postgres` for this.
 - Connect to your Postgres instance and set up a new database in Postgres using `CREATE DATABASE ragdemo;`
 - Connect to this database and icreate the pgvector and PL/Python extensions in using `CREATE EXTENSION vector` and  `CREATE EXTENSION plpython3u`.
 - Run the four PL/Ppython scripts from the `pl_python` sub-directory

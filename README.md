@@ -38,7 +38,7 @@ When you create a virtual environment using conda, conda will automagically add 
 Conda already installed Postgres when you were installing pgvector and PL/Python, so nothing to install here.
 
 Make sure any existing instances of Postgres are stopped. If you cannot stop those instances, make sure you are running this Postgres on a separate port.
-- Create a directory for your database `db`and run `initdb -D db`, then start the database using `pg_ctl -D mylocal_db -l logfile start`.
+- Create a directory for your database `db`and run `initdb -D db`, then start the database using `pg_ctl -D db -l logfile start`.
 
 Postgres is now running under your OS $USER. Feel free to create a user for this demo. I created the standard user `postgres` for this.
 - Connect to your Postgres instance and set up a new database in Postgres using `CREATE DATABASE ragdemo;`
@@ -55,7 +55,7 @@ Postgres is now running under your OS $USER. Feel free to create a user for this
 	- llama3.1 (`ollama pull llama3.1`)
 
 #### Set up demo scripts
-- Change the Postgres username, password and database hostname in `.streamlit/secrets.toml`.
+- Change the Postgres username, password and database hostname in `.streamlit/secrets.toml` if needed.
 
 ## Demo flow
 You are now ready to run the demo.
@@ -63,4 +63,11 @@ You are now ready to run the demo.
 Run the streamlit application using `streamlit run ragdemo.py`.
 
 ## Tips
-If the GPU is not detected by ollama, try to unload and reload the uvm module using sudo rmmod nvidia_uvmand sudo modprobe nvidia_uv. See https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md
+If you have an Nvidia GPU and the GPU is not detected by ollama you will see this and the enconding will be slow.
+```
+level=INFO source=gpu.go:199 msg="looking for compatible GPUs"
+level=WARN source=gpu.go:562 msg="unknown error initializing cuda driver library" library=/usr/lib/x86_64-linux-gnu/libcuda.so.560.35.03 error="cuda driver library init failure: 999"
+level=WARN source=gpu.go:563 msg="see https://github.com/ollama/ollama/blob/main/docs/troubleshooting.md for more information"
+level=INFO source=gpu.go:347 msg="no compatible GPUs were discovered"
+```
+Try to unload and reload the uvm module using `sudo rmmod nvidia_uvmand` and then `sudo modprobe nvidia_uv`. 

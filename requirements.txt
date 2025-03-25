@@ -1,0 +1,12 @@
+python.app
+psycopg2
+langchain
+tiktoken 
+pypdf
+pdfplumber
+streamlit
+pillow 
+ollama 
+transformers
+wxPython
+watchdog
